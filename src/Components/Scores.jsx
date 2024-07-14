@@ -21,12 +21,12 @@ function Scores() {
           <div className="relative w-16 h-10 flex-shrink-0">
             <img
               src="../../img/star.png"
-              className="absolute -top-3 h-6 right-2  "
+              className="absolute -top-3 h-6 right-0  "
               alt="Star 1"
             />
             <img
               src="../../img/star.png"
-              className="absolute -top-5 left-1/3 -translate-x-1/2  h-6 "
+              className="absolute -top-5 left-0.5 translate-x-1/2  h-6 "
               alt="Star 2"
             />
             <img
