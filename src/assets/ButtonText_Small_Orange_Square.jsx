@@ -1,8 +1,9 @@
 import React from "react";
 
-const ButtonText_Small_Orange_Square = () => {
+const ButtonText_Small_Orange_Square = ({ children }) => {
   return (
-    // <?xml version="1.0" encoding="UTF-8"?>
+    // const ButtonText_Small_Orange_Square = () => {
+    //   return (
     <svg
       className="h-auto w-container"
       id="Layer_2"
@@ -54,6 +55,17 @@ const ButtonText_Small_Orange_Square = () => {
           />
         </g>
       </g>
+      <foreignObject
+        className="h-full w-full"
+        x="10"
+        y="10"
+        width="80"
+        height="80"
+      >
+        <div className="h-full w-full" xmlns="http://www.w3.org/1999/xhtml">
+          {children}
+        </div>
+      </foreignObject>
     </svg>
   );
 };
