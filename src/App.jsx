@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Alphabatics from "./Pages/Alphabatics/Alphabatics";
 import Words from "./Pages/Words/Words";
-import Test from "./Pages/Test";
 
 const router = createBrowserRouter([
   {

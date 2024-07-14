@@ -16,3 +16,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.w-container {
+  width: 30rem;
+}

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllWords } from "../redux/thunk/wordsThunk";
 import { getAllLetters } from "../redux/thunk/lettersThunk";
+import { getAllWords } from "../redux/thunk/wordsThunk";
 
 const Test = () => {
   const dispatch = useDispatch();
-  const words = useSelector((state) => state.words);
   const letters = useSelector((state) => state.letters);
+  const words = useSelector((state) => state.words.data);
 
   useEffect(() => {
     dispatch(getAllWords());
@@ -15,7 +15,7 @@ const Test = () => {
 
   return (
     <div>
-      {words.data?.map((word) => (
+      {words?.map((word) => (
         <div key={word.id} style={{ marginBottom: "1rem" }}>
           <div>
             <strong>Arabic:</strong> {word.Ar}
