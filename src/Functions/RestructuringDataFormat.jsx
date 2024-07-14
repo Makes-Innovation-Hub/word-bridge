@@ -1,29 +1,6 @@
-const data = {
-  status: "success",
-  data: [
-    {
-      Ar: "هو",
-      He: "הוא",
-      ArEn: "huwa",
-      HeEn: "hu",
-      _id: "669115f0d3680c7369762604",
-      __v: 0,
-      id: "669115f0d3680c7369762604",
-    },
-    {
-      Ar: "إلي",
-      He: "לי",
-      ArEn: "ilay",
-      HeEn: "li",
-      _id: "669115f0d3680c736976260c",
-      __v: 0,
-      id: "669115f0d3680c736976260c",
-    },
-  ],
-};
-const RestructuringDataFormat = () => {
+const RestructuringDataFormat = (data) => {
   console.log("hi");
-  const hebrew = data.data.map((element) => {
+  const hebrew = data.map((element) => {
     if (element.HeEn)
       return {
         He: element.He,
@@ -37,7 +14,7 @@ const RestructuringDataFormat = () => {
         match: false,
       };
   });
-  const arabic = data.data.map((element) => {
+  const arabic = data.map((element) => {
     if (element.ArEn)
       return {
         Ar: element.Ar,

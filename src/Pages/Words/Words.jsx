@@ -1,66 +1,89 @@
+import RestructuringDataFormat from "../../Functions/RestructuringDataFormat";
 import { SingleWord } from "../../Components/SingleWord/SingleWord";
-import { getAllWords } from "../../actions/wordsActions";
+import { getAllWords } from "../../redux/thunk/wordsThunk";
 import { useDispatch, useSelector } from "react-redux";
-import menuBar from "../../Components/menuBar";
 import { useEffect, useState } from "react";
 
 import "./Words.css";
 
 function Words() {
-  // const wordsAPI = useSelector((state) => state.words.words);
-  const [secondCard, setSecondCard] = useState(null);
-  const [firstCard, setFirstCard] = useState(null);
+  const wordsAPI = useSelector((state) => state.words.data);
+  const [secondWord, setSecondWord] = useState(null);
+  const [firstWord, setFirstWord] = useState(null);
+  const [disabled, setDisabled] = useState(false);
   const [words, setWords] = useState([]);
   const dispatch = useDispatch();
 
+  // Get words from Redux
   useEffect(() => {
     dispatch(getAllWords());
-    setWords(wordsAPI);
   }, [dispatch]);
 
-  // Choosing a word card
-  const handleChoosingCard = (card) => {
-    firstCard ? setSecondCard(card) : setFirstCard(card);
-  };
 
-  // Handle card flipping
-  const handleFlippedCards = (card) => {
-    if (card.match || card === firstCard || card === secondCard) {
-      return true;
+  //Restructure data
+  useEffect(() => {
+    if (wordsAPI.length) {
+      const restructuredWords = RestructuringDataFormat(wordsAPI);
+      setWords(restructuredWords);
     }
+  }, [wordsAPI]);
+
+  
+  // Choosing a word Word
+  const handleChoosingWord = (word) => {
+    firstWord ? setSecondWord(word) : setFirstWord(word);
   };
 
   // resetting the words
   const handleResetChoosing = () => {
-    setSecondCard(null);
-    setFirstCard(null);
+    setSecondWord(null);
+    setFirstWord(null);
+    setDisabled(false);
   };
 
-  //  Cards logic
+  //  Words logic
   useEffect(() => {
-    if (firstCard.id === secondCard.id) {
-      setWords((prev) => {
-        return prev.map((card) => {
-          if (card.id === firstCard.id) {
-            return { ...card, match: true };
-          } else {
-            return card;
-          }
-        });
-      });
-      setTimeout(() => handleResetChoosing(), 1000);
+    let timeout;
+
+    if (firstWord && secondWord) {
+      setDisabled(true);
+
+      if (firstWord.id === secondWord.id) {
+        setWords((prev) =>
+          prev.map((word) =>
+            word.id === firstWord.id ? { ...word, match: true } : word
+          )
+        );
+      }
+      timeout = setTimeout(() => handleResetChoosing(), 2000);
     }
-  }, [firstCard, secondCard]);
+    return () => clearTimeout(timeout);
+  }, [firstWord, secondWord]);
+
+
 
   return (
     <>
-      <menuBar />
       <div className="words-container">
         <div className="cards-grid">
-          <SingleWord
-            handleChoosingCard={handleChoosingCard}
-            handleFlippedCards={handleFlippedCards}
-          />
+          {words?.hebrew?.map((word) => (
+            <SingleWord
+              flip={word === firstWord || word === secondWord || word.matched}
+              handleChoosingWord={handleChoosingWord}
+              disabled={disabled}
+              key={word.id}
+              word={word}
+            />
+          ))}
+          {words?.arabic?.map((word) => (
+            <SingleWord
+              flip={word === firstWord || word === secondWord || word.matched}
+              handleChoosingWord={handleChoosingWord}
+              disabled={disabled}
+              key={word.id}
+              word={word}
+            />
+          ))}
         </div>
       </div>
     </>
