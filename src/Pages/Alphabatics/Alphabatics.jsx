@@ -4,7 +4,7 @@ import RestructuringDataFormat from "../../Functions/RestructuringDataFormat";
 function Alphabatics() {
   RestructuringDataFormat();
   return (
-    <div>
+    <div className="text-pink-800">
       <MenuBar />
       Alphabatics
     </div>
