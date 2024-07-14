@@ -1,5 +1,3 @@
-import { FaHome } from "react-icons/fa";
-import { MdMusicNote, MdMusicOff } from "react-icons/md";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 
@@ -21,17 +19,17 @@ const Menu = () => {
 
   return (
     <>
-      <div className="absolute text-3xl flex m-3 gap-3 text-black">
+      <div className="absolute flex m-3 gap-3 text-black z-50">
         <div onClick={() => navigate("/")}>
-          <FaHome />
+          <img className="w-10" src="./img/Home.png" alt="Home" />
         </div>
         {music ? (
           <button onClick={() => setMusic(false)}>
-            <MdMusicNote />
+            <img className="w-10" src="./img/MusicOn.png" alt="MusicOn" />
           </button>
         ) : (
           <button onClick={() => setMusic(true)}>
-            <MdMusicOff />
+            <img className="w-10" src="./img/MusicOff.png" alt="MusicOff" />
           </button>
         )}
       </div>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { getAllLetters } from "../redux/thunk/lettersThunk";
 // import { getAllWords } from "../redux/thunk/wordsThunk";
 import { increaseScore } from "../redux/features/scoreSlice";
+import Dialog from "../Components/Dialog";
 
 const Test = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Test = () => {
 
   return (
     <div className="text-black h-full">
+      <Dialog />
       {/* {words?.map((word) => (
         <div key={word.id} style={{ marginBottom: "1rem" }}>
           <div>

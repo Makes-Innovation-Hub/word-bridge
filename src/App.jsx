@@ -5,7 +5,7 @@ import Home from "./Pages/Home/Home";
 import Words from "./Pages/Words/Words";
 import Alphabatics from "./Pages/Alphabatics/Alphabatics";
 import Menu from "./Components/Menu";
-// import Test from "./Pages/Test";
+import Test from "./Pages/Test";
 
 const router = createBrowserRouter([
   {
@@ -24,10 +24,10 @@ const router = createBrowserRouter([
         path: "/words",
         element: <Words />,
       },
-      // {
-      //   path: "/test",
-      //   element: <Test />,
-      // },
+      {
+        path: "/test",
+        element: <Test />,
+      },
     ],
   },
   {
