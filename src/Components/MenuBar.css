@@ -1,0 +1,29 @@
+.menuBar-container {
+  position: relative;
+  display: flex;
+}
+
+.menuBar-score-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+
+.menuBar-logo {
+   text-shadow: rgb(181, 137, 90) 4px 4px 5px;
+   transform: translate(-50%, -50%);
+  font-family: "forces", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  position: absolute;
+  font-size: 1.8rem;
+  color: black;
+  left: 50%;
+  top: 20%;
+}
+
+.menuBar-timer {
+  height: 4rem;
+}
+

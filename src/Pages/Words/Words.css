@@ -14,7 +14,7 @@
   width: 35vw;
 }
 
-.cards-grid{
+.cards-grid {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
   grid-gap: 0.5rem;
@@ -45,3 +45,32 @@
   top: 0;
 }
 
+/* Tablet Responsiveness*/
+@media screen and (min-width: 430px) and (max-width: 800px) {
+  .words-container {
+    width: 70vw;
+  }
+}
+
+/* Phone Responsiveness*/
+@media screen and (max-width: 430px) {
+  .words-section {
+    min-height: 100%;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .words-container {
+    width: 90vw;
+  }
+
+  .games-video {
+    height: 100%;
+  }
+
+  .letters-overlay {
+    height: 100%;
+  }
+}

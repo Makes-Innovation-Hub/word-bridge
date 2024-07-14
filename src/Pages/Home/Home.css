@@ -10,10 +10,7 @@
 /* Body styles for background and font */
 
 body {
-  font-family: "Roboto", sans-serif;
-
   /* background-color: #121212; */
-
   color: #fff;
   height: 100%;
   width: 100%;
@@ -43,15 +40,20 @@ body {
 .App-header {
   filter: drop-shadow(0 5px 5px rgb(0, 0, 0));
   animation: bounce 3s linear infinite;
+  height: 12rem;
   padding: 5px;
 }
 
 .title {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  text-shadow: rgb(181, 137, 90) 4px 4px 5px;
+  font-family: "Bubble", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: -4px;
   position: absolute;
-  font-size: 3rem;
+  font-size: 3.5rem;
+  transition: 1s;
+  width: 100%;
+  top: 1rem;
 }
 
 #curve {
@@ -64,7 +66,6 @@ body {
 }
 
 .button-container {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   flex-direction: column;
   align-items: center;
   margin-top: 5rem;
@@ -76,7 +77,9 @@ body {
 
 .main-page-btn {
   box-shadow: #000000 0px 7px 2px, #000 0px 8px 5px;
+  font-family: "forces", sans-serif;
   background-color: rgb(224, 101, 0);
+  text-transform: uppercase;
   border-radius: 15px;
   font-size: 1.5rem;
   transition: 0.5s;
