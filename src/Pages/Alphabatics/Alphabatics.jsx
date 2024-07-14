@@ -136,7 +136,9 @@ function Alphabetics() {
                 key={index}
                 onClick={() => handleLetterClick(letter, index)}
                 className={`w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold cursor-pointer border-2 shadow-md hover:shadow-lg m-2 absolute bg-white ${
-                  clickedLetterIndex === index ? "letter-animation" : ""
+                  clickedLetterIndex === index
+                    ? "letter-animation bg-blue-300"
+                    : ""
                 }`}
                 style={letterPositions[index]}
               >
