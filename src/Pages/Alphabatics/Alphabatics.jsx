@@ -19,7 +19,6 @@ function Alphabetics() {
     return array;
   };
 
-  // Function to get random letters
   const getRandomLetters = () => {
     const randomIndexes = [];
     while (randomIndexes.length < 6) {
