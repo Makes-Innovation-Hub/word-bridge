@@ -2,7 +2,7 @@ import ButtonText_Small_Orange_Square from "../assets/ButtonText_Small_Orange_Sq
 import Timer from "./Timer";
 import Scores from "./Scores";
 
-function MenuBar() {
+function MenuBar({ constTime, timeLeft, setTimeLeft }) {
   return (
     <div className="h-auto w-container">
       <ButtonText_Small_Orange_Square>
@@ -12,7 +12,11 @@ function MenuBar() {
             <Scores />
           </div>
           <div className="w-9/12 mb-12 ">
-            <Timer />
+            <Timer
+              constTime={constTime}
+              setTimeLeft={setTimeLeft}
+              timeLeft={timeLeft}
+            />
           </div>
         </div>
       </ButtonText_Small_Orange_Square>

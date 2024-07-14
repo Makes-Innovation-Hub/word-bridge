@@ -3,16 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import MenuBar from "../../Components/MenuBar";
 import { getAllLetters } from "../../redux/thunk/lettersThunk";
 import RestructuringDataFormat from "../../Functions/RestructuringDataFormat";
+import { increaseScore } from "../../redux/features/scoreSlice";
 
 function Alphabetics() {
   const dispatch = useDispatch();
+  const score = useSelector((state) => state.score.value);
+
+  const constTime = 60;
+  const [timeLeft, setTimeLeft] = useState(constTime);
+  const [finished, setFinished] = useState(0);
   const allLetters = useSelector((state) => state.letters.data) || [];
   const [randomLetters, setRandomLetters] = useState([]);
   const [clickedLetterIndex, setClickedLetterIndex] = useState(null);
   const [lettersFormat, setLettersFormat] = useState([]);
   const [letterPositions, setLetterPositions] = useState([]);
   const [clickedLetter, setClickedLetter] = useState([]);
-
+  useEffect(() => {
+    if (timeLeft === 0) {
+      const storedMaxScore = localStorage.getItem("maxScore");
+      const previousMaxScore = storedMaxScore ? JSON.parse(storedMaxScore) : 0;
+      if (score > previousMaxScore) {
+        localStorage.setItem("maxScore", JSON.stringify(score));
+      }
+    }
+  }, [timeLeft, score]);
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -51,28 +65,38 @@ function Alphabetics() {
   };
 
   const handleLetterClick = (letter, index) => {
-    setClickedLetterIndex(index);
-    const isLetterAlreadyClicked = clickedLetter.some(
-      (clicked) => clicked === letter
-    );
-    if (!isLetterAlreadyClicked) {
-      clickedLetter.push(letter);
-    }
-    if (clickedLetter.length === 2) {
-      if (
-        clickedLetter[0].id === clickedLetter[1].id &&
-        clickedLetter[0] !== clickedLetter[1]
-      ) {
-        clickedLetter[0].match = true;
-        clickedLetter[1].match = true;
-        setClickedLetterIndex(null);
-        setClickedLetter([]);
-      } else {
-        setClickedLetter([]);
+    if (timeLeft != 0) {
+      setClickedLetterIndex(index);
+      const isLetterAlreadyClicked = clickedLetter.some(
+        (clicked) => clicked === letter
+      );
+      if (!isLetterAlreadyClicked) {
+        clickedLetter.push(letter);
+      }
+      if (clickedLetter.length === 2) {
+        if (
+          clickedLetter[0].id === clickedLetter[1].id &&
+          clickedLetter[0] !== clickedLetter[1]
+        ) {
+          setFinished((prev) => prev + 1);
+          dispatch(increaseScore(5));
+          clickedLetter[0].match = true;
+          clickedLetter[1].match = true;
+          setClickedLetterIndex(null);
+          setClickedLetter([]);
+        } else {
+          setClickedLetter([]);
+        }
       }
     }
   };
 
+  useEffect(() => {
+    if (finished >= lettersFormat?.length / 2 && finished != 0) {
+      dispatch(increaseScore(timeLeft));
+      setTimeLeft(0);
+    }
+  }, [finished, lettersFormat?.length]);
   useEffect(() => {
     dispatch(getAllLetters());
   }, [dispatch]);
@@ -93,7 +117,11 @@ function Alphabetics() {
   return (
     <div className="w-full h-screen flex flex-col items-center">
       <div className="w-container h-full flex flex-col items-center justify-center">
-        <MenuBar />
+        <MenuBar
+          constTime={constTime}
+          setTimeLeft={setTimeLeft}
+          timeLeft={timeLeft}
+        />
         <div className="flex flex-wrap justify-center relative w-full h-full">
           {lettersFormat.map((letter, index) =>
             !letter.match ? (

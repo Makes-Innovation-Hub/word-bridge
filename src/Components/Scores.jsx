@@ -1,12 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 function Scores() {
+  const score = useSelector((state) => state.score.value);
+
   return (
     <div className="flex flex-row w-full items-center justify-around">
-      <div className="h-full flex flex-row items-center  justify-between">
-        <img src="../../img/star.png" className="h-10" alt="" />
-        <div className="text-lg h-10 flex items-center justify-center text-center">
-          <p>10</p>
+      <div className="h-full flex flex-row bg-orange-300 px-4 justify-between rounded-lg border-4 border-orange-900 relative">
+        <img
+          src="../../img/star.png"
+          className="absolute transform  left-1/2  -translate-x-1/2 -top-6 h-8"
+          alt=""
+        />
+        <div className="text-lg h-10 flex items-center justify-center text-center flex-grow">
+          <p>{score}</p>
         </div>
       </div>
       <div className="h-full flex flex-row bg-orange-300 px-4 justify-between rounded-lg border-4 border-orange-900 relative">
@@ -14,23 +21,28 @@ function Scores() {
           <div className="relative w-16 h-10 flex-shrink-0">
             <img
               src="../../img/star.png"
-              className="absolute -top-4 h-6 left-0  "
+              className="absolute -top-3 h-6 right-2  "
               alt="Star 1"
             />
             <img
               src="../../img/star.png"
-              className="absolute -top-4 right-0  h-6 "
+              className="absolute -top-5 left-1/3 -translate-x-1/2  h-6 "
               alt="Star 2"
             />
             <img
               src="../../img/star.png"
-              className="absolute -top-4 right-5 h-6 "
+              className="absolute -top-3  -translate-x-1/2 h-6 "
               alt="Star 3"
             />
           </div>
         </div>
         <div className="text-lg h-10 flex items-center justify-center text-center flex-grow">
-          <p>100</p>
+          <p>
+            {localStorage.getItem("maxScore")
+              ? localStorage.getItem("maxScore")
+              : 0}
+          </p>
+          {/* //maxScore  */}
         </div>
       </div>
     </div>

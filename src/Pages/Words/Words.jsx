@@ -6,10 +6,15 @@ import MenuBar from "../../Components/MenuBar";
 import { useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { increaseScore } from "../../redux/features/scoreSlice";
 
 import "./Words.css";
 
 function Words() {
+  const score = useSelector((state) => state.score.value);
+
+  const constTime = 30;
+  const [timeLeft, setTimeLeft] = useState(constTime);
   const wordsAPI = useSelector((state) => state.words.data);
   const [secondWord, setSecondWord] = useState(null);
   const [animation, setAnimation] = useState(true);
@@ -59,7 +64,7 @@ function Words() {
 
   // Choosing a word Word
   const handleChoosingWord = (word) => {
-    firstWord ? setSecondWord(word) : setFirstWord(word);
+    if (timeLeft > 0) firstWord ? setSecondWord(word) : setFirstWord(word);
   };
 
   // resetting the words
@@ -68,8 +73,28 @@ function Words() {
     setFirstWord(null);
     setDisabled(false);
   };
-
+  useEffect(() => {
+    if (timeLeft === 0) {
+      const storedMaxScore = localStorage.getItem("maxScore");
+      const previousMaxScore = storedMaxScore ? JSON.parse(storedMaxScore) : 0;
+      if (score > previousMaxScore) {
+        localStorage.setItem("maxScore", JSON.stringify(score));
+      }
+    }
+  }, [timeLeft, score]);
   //  Words logic
+  useEffect(() => {
+    let isFinished = 0;
+    if (words.length > 0) {
+      words.forEach((word) => {
+        if (word.match == false) isFinished++;
+      });
+      if (isFinished == 0) {
+        dispatch(increaseScore(timeLeft));
+        setTimeLeft(0);
+      }
+    }
+  }, [words]);
   useEffect(() => {
     let timeout;
 
@@ -77,6 +102,7 @@ function Words() {
       setDisabled(true);
 
       if (firstWord.id === secondWord.id) {
+        dispatch(increaseScore(10));
         setWords((prev) =>
           prev.map((word) =>
             word.id === firstWord.id ? { ...word, match: true } : word
@@ -107,7 +133,11 @@ function Words() {
 
   return (
     <section className="words-section">
-      <MenuBar />
+      <MenuBar
+        constTime={constTime}
+        setTimeLeft={setTimeLeft}
+        timeLeft={timeLeft}
+      />
       <div className="words-container">
         <div className="cards-grid">
           {words?.map((word, index) => (
