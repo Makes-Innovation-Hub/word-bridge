@@ -8,7 +8,7 @@ function MenuBar() {
         <div className="flex flex-col w-full h-full gap-1 items-center justify-between">
           <div className="mt-6">logos</div>
           <div>score</div>
-          <div className="w-full mb-12 h-full">
+          <div className="w-9/12 mb-12 ">
             <Timer />
           </div>
         </div>

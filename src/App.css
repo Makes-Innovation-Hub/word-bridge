@@ -46,3 +46,8 @@ body {
   position: relative;
   z-index: 3;
 }
+
+/* In your CSS file */
+.transition-width {
+  transition: width 1s linear;
+}
