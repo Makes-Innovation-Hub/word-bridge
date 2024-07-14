@@ -10,7 +10,7 @@ function Alphabetics() {
   const dispatch = useDispatch();
   const score = useSelector((state) => state.score.value);
 
-  const constTime = 60;
+  const constTime = 50;
   const [timeLeft, setTimeLeft] = useState(constTime);
   const [finished, setFinished] = useState(0);
   const allLetters = useSelector((state) => state.letters.data) || [];
