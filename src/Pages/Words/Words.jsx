@@ -1,5 +1,6 @@
 import RestructuringDataFormat from "../../Functions/RestructuringDataFormat";
 import { SingleWord } from "../../Components/SingleWord/SingleWord";
+import { backgroundVideo } from "../../utilities/variables";
 import { getAllWords } from "../../redux/thunk/wordsThunk";
 import { useDispatch, useSelector } from "react-redux";
 import MenuBar from "../../Components/MenuBar";
@@ -139,6 +140,10 @@ function Words() {
         timeLeft={timeLeft}
       />
       <div className="words-container">
+        <video autoPlay muted loop className="games-video">
+          <source src={backgroundVideo} type="video/mp4" />
+        </video>
+        <div className="letters-overlay"></div>
         <div className="cards-grid">
           {words?.map((word, index) => (
             <SingleWord
