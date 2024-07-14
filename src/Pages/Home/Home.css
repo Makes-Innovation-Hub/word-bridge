@@ -1,0 +1,114 @@
+/* Reset default margin and padding */
+
+* {
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+/* Body styles for background and font */
+
+body {
+  font-family: "Roboto", sans-serif;
+
+  background-color: #121212;
+
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  height: 100vh;
+}
+/* home-container*/
+.home-container {
+  height: 100%;
+  width: 40rem;
+
+  padding: 100vh 10rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(19, 12, 0, 0.958);
+}
+
+/* Container for the app */
+
+.App {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* Header styles */
+
+.App-header {
+  padding: 20px;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px; /* Add margin bottom to create separation */
+}
+
+/* Title styles */
+
+h1 {
+  font-size: 3em;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+}
+
+/* Button container */
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: center;
+}
+button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border: none;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: #45a049;
+}
+button .mr-9 {
+  margin-right: 200px;
+}
+
+/* Media query for responsiveness */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5em;
+  }
+
+  button {
+    padding: 12px 25px;
+
+    font-size: 1em;
+  }
+}
