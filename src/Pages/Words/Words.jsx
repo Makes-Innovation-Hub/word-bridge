@@ -1,7 +1,6 @@
 import { SingleWord } from "../../Components/SingleWord/SingleWord";
-import { getAllWords } from "../../actions/wordsActions";
+// import { getAllWords } from "../../actions/wordsActions";
 import { useDispatch, useSelector } from "react-redux";
-import menuBar from "../../Components/menuBar";
 import { useEffect, useState } from "react";
 
 import "./Words.css";
@@ -54,7 +53,6 @@ function Words() {
 
   return (
     <>
-      <menuBar />
       <div className="words-container">
         <div className="cards-grid">
           <SingleWord
