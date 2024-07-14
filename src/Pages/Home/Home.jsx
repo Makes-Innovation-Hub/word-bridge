@@ -4,10 +4,10 @@ function Home() {
   const navigate = useNavigate();
   return (
     <div>
-      <button className="mr-10" onClick={navigate("/alphabatics")}>
+      <button className="mr-10" onClick={() => navigate("/alphabatics")}>
         alphabatics
       </button>
-      <button onClick={navigate("/words")}>words</button>
+      <button onClick={() => navigate("/words")}>words</button>
     </div>
   );
 }
