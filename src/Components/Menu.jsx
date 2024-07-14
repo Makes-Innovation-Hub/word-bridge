@@ -23,7 +23,7 @@ const Menu = () => {
     <>
       <div className="absolute text-3xl flex m-3 z-20 gap-3 text-black">
         <div onClick={() => navigate("/")}>
-          <FaHome />
+          <FaHome className="cursor-pointer" />
         </div>
         {music ? (
           <button onClick={() => setMusic(false)}>

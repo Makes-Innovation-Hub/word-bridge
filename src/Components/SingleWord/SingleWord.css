@@ -49,6 +49,14 @@
   top: 0;
 }
 
+@media screen and (max-width: 1200px) {
+  .word-back {
+    /* width: 120%;
+    height: 120%;
+    margin-left: 2rem; */
+  }
+}
+
 .word-back:hover {
   filter: brightness(0.8);
 }
@@ -68,6 +76,7 @@
 .word-container .word-back {
   transition: 0.5s;
 }
+
 .flipped .word-back {
   transform: rotateY(180deg);
   transition: 0.6s;

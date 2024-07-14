@@ -4,9 +4,9 @@ import Scores from "./Scores";
 
 function MenuBar({ constTime, timeLeft, setTimeLeft }) {
   return (
-    <div className="h-auto w-container">
+    <div className="h-auto flex justify-center mt-12 lg:mt-0 w-container">
       <ButtonText_Small_Orange_Square>
-        <div className="flex flex-col w-full h-full gap-1 items-center justify-between">
+        <div className="flex flex-col w-full h-full gap-1  items-center justify-between">
           <div className="mt-16 w-full">
             <Scores />
           </div>

@@ -3,7 +3,7 @@ import React from "react";
 const ButtonText_Small_Orange_Square = ({ children }) => {
   return (
     <svg
-      className="h-auto w-container"
+      className="h-auto w-96 lg:w-full"
       id="Layer_2"
       data-name="Layer 2"
       xmlns="http://www.w3.org/2000/svg"

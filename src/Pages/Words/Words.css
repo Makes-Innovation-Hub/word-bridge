@@ -9,17 +9,25 @@
 
 .words-container {
   justify-content: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   height: 95vh;
   width: 35vw;
 }
 
-.cards-grid{
+.cards-grid {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
   grid-gap: 0.5rem;
   display: grid;
   padding: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    /* width: 150%;
+    margin-right: 8rem; */
+  }
 }
 
 .games-video {
@@ -44,4 +52,3 @@
   left: 0;
   top: 0;
 }
-
