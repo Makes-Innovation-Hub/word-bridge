@@ -34,7 +34,7 @@ const Dialog = ({ score }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
