@@ -2,8 +2,6 @@ import React from "react";
 
 const ButtonText_Small_Orange_Square = ({ children }) => {
   return (
-    // const ButtonText_Small_Orange_Square = () => {
-    //   return (
     <svg
       className="h-auto w-container"
       id="Layer_2"

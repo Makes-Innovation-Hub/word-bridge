@@ -1,8 +1,39 @@
+import React, { useState, useEffect } from "react";
+
 const Timer = () => {
+  const constTime = 100;
+  const [timeLeft, setTimeLeft] = useState(constTime);
+
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+      return () => clearInterval(timer);
+    } else {
+      alert("Time's up!");
+    }
+  }, [timeLeft]);
+
   return (
-    <div className="z-20 relative w-full h-full">
-      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-        <div className="bg-blue-600 h-2.5 rounded-full w-1/2"></div>
+    <div className="relative w-full h-full">
+      <div className="relative w-full">
+        <div className="absolute left-0 flex items-center h-full">
+          <img
+            src="../../img/clock.png"
+            alt=""
+            className="ml-6 h-12 mb-2 z-20"
+          />
+        </div>
+        <div className="bg-gray-200 rounded-full h-4 dark:bg-gray-700 ml-8 relative">
+          <div
+            className="bg-green-600 h-4 rounded-full transition-width duration-1000 ease-linear"
+            style={{ width: `${(timeLeft / constTime) * 100}%` }}
+          ></div>
+          <div className="absolute inset-0 flex items-center justify-center text-white">
+            {timeLeft}
+          </div>
+        </div>
       </div>
     </div>
   );

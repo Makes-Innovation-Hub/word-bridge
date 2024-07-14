@@ -4,6 +4,7 @@ import { NotFound } from "./Pages/NotFound/NotFound";
 import Home from "./Pages/Home/Home";
 import Words from "./Pages/Words/Words";
 import Alphabatics from "./Pages/Alphabatics/Alphabatics";
+// import Test from "./Pages/Test";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         path: "/words",
         element: <Words />,
       },
+      // {
+      //   path: "/test",
+      //   element: <Test />,
+      // },
     ],
   },
   {
