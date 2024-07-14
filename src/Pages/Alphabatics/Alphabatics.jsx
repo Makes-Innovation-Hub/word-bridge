@@ -52,14 +52,24 @@ function Alphabetics() {
 
   const handleLetterClick = (letter, index) => {
     setClickedLetterIndex(index);
-    clickedLetter.push(letter);
-    if (clickedLetter.length >= 2) {
-      if (clickedLetter[0].id === clickedLetter[1].id) {
+    const isLetterAlreadyClicked = clickedLetter.some(
+      (clicked) => clicked === letter
+    );
+    if (!isLetterAlreadyClicked) {
+      clickedLetter.push(letter);
+    }
+    if (clickedLetter.length === 2) {
+      if (
+        clickedLetter[0].id === clickedLetter[1].id &&
+        clickedLetter[0] !== clickedLetter[1]
+      ) {
         clickedLetter[0].match = true;
         clickedLetter[1].match = true;
         setClickedLetterIndex(null);
         setClickedLetter([]);
-      } else setClickedLetter([]);
+      } else {
+        setClickedLetter([]);
+      }
     }
   };
 
@@ -105,5 +115,4 @@ function Alphabetics() {
     </div>
   );
 }
-
 export default Alphabetics;
