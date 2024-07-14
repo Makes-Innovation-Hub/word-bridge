@@ -1,5 +1,6 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { NotFound } from "./Pages/NotFound/NotFound";
 import Home from "./Pages/Home/Home";
 import Words from "./Pages/Words/Words";
 import Alphabatics from "./Pages/Alphabatics/Alphabatics";
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
         element: <Words />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 function App() {

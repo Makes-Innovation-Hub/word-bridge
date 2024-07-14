@@ -6,18 +6,18 @@ import MenuBar from "../../Components/MenuBar";
 import { useEffect, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-gsap.registerPlugin(useGSAP);
 
 import "./Words.css";
 
 function Words() {
   const wordsAPI = useSelector((state) => state.words.data);
   const [secondWord, setSecondWord] = useState(null);
+  const [animation, setAnimation] = useState(true);
   const [firstWord, setFirstWord] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [words, setWords] = useState([]);
-  const [animation, setAnimation] = useState(true);
   const dispatch = useDispatch();
+  gsap.registerPlugin(useGSAP);
 
   // Random 6 objects
   const getRandomWords = (allData) => {
@@ -88,9 +88,7 @@ function Words() {
     return () => clearTimeout(timeout);
   }, [firstWord, secondWord]);
 
-
-
-// Gsap Animation
+  // Gsap Animation
   useEffect(() => {
     gsap.set(".word-container ", {
       scale: 0,
@@ -106,12 +104,6 @@ function Words() {
       },
     });
   }, [animation]);
-
-
-
-
-
-
 
   return (
     <section className="words-section">
