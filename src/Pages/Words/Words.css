@@ -10,14 +10,14 @@
 .words-container {
   justify-content: center;
   overflow: hidden;
-  height: 50vh;
-  width: 50vw;
+  height: 95vh;
+  width: 35vw;
 }
 
 .cards-grid{
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
-  grid-gap: 0.2rem;
+  grid-gap: 0.5rem;
   display: grid;
   padding: 1rem;
 }
