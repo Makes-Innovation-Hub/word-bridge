@@ -1,4 +1,4 @@
 function MenuBar() {
-  return <div>menuBar</div>;
+  return <div>mMnuBar</div>;
 }
 export default MenuBar;
