@@ -121,9 +121,7 @@ function Alphabetics() {
       <video autoPlay muted loop className="games-video">
         <source src={backgroundVideo} type="video/mp4" />
       </video>
-
       <div className="alphabetic-overlay"></div>
-
       <div className="w-container h-full flex flex-col items-center justify-center">
         <MenuBar
           constTime={constTime}
