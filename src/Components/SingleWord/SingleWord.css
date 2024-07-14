@@ -1,0 +1,33 @@
+.word-container {
+  background-color: rgb(166, 211, 250);
+  border-radius: 5px;
+  position: relative;
+  height: 10vh;
+  width: 100%;
+}
+
+.word-back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.card .word-front {
+  transform: rotateY(90deg);
+  transition: all ease-in 0.3s;
+  position: absolute;
+}
+
+.flipped .word-front {
+  transform: rotateY(0deg);
+  transition-delay: 0.3s;
+}
+
+.card .word-back {
+  transition: all ease-in 0.3s;
+  transition-delay: 0.3s;
+}
+.flipped .word-back {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
