@@ -4,11 +4,13 @@ import { NotFound } from "./Pages/NotFound/NotFound";
 import Home from "./Pages/Home/Home";
 import Words from "./Pages/Words/Words";
 import Alphabatics from "./Pages/Alphabatics/Alphabatics";
+import Menu from "./Components/Menu";
 // import Test from "./Pages/Test";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Menu />,
     children: [
       {
         index: true,
