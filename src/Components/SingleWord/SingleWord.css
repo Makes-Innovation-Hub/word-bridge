@@ -49,14 +49,6 @@
   top: 0;
 }
 
-@media screen and (max-width: 1200px) {
-  .word-back {
-    /* width: 120%;
-    height: 120%;
-    margin-left: 2rem; */
-  }
-}
-
 .word-back:hover {
   filter: brightness(0.8);
 }
@@ -83,8 +75,6 @@
   opacity: 0;
 }
 
-
-
 /* Tablet Responsiveness*/
 @media screen and (min-width: 430px) and (max-width: 800px) {
   .word-container {
@@ -92,6 +82,3 @@
     width: 15vw;
   }
 }
-
-/* Phone Responsiveness*/
-@media screen and (max-width: 430px) {}
