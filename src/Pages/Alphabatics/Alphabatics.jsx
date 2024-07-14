@@ -8,9 +8,11 @@ function Alphabetics() {
   const dispatch = useDispatch();
   const allLetters = useSelector((state) => state.letters.data) || [];
   const [randomLetters, setRandomLetters] = useState([]);
-  const [selectedLetters, setSelectedLetters] = useState(null);
+  const [clickedLetterIndex, setClickedLetterIndex] = useState(null);
+  const [lettersFormat, setLettersFormat] = useState([]);
+  const [letterPositions, setLetterPositions] = useState([]);
+  const [clickedLetter, setClickedLetter] = useState([]);
 
-  // Function to shuffle array randomly
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -27,9 +29,38 @@ function Alphabetics() {
         randomIndexes.push(randomIndex);
       }
     }
-
     const randomLettersArray = randomIndexes.map((index) => allLetters[index]);
     setRandomLetters(randomLettersArray);
+  };
+
+  const generateRandomPositions = (length) => {
+    const positions = [];
+    for (let i = 0; i < length; i++) {
+      positions.push({
+        bottom: `${getRandomPosition()}%`,
+        right: `${getRandomPosition()}%`,
+      });
+    }
+    return positions;
+  };
+
+  const getRandomPosition = () => {
+    const min = 0;
+    const max = 80;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  const handleLetterClick = (letter, index) => {
+    setClickedLetterIndex(index);
+    clickedLetter.push(letter);
+    if (clickedLetter.length >= 2) {
+      if (clickedLetter[0].id === clickedLetter[1].id) {
+        clickedLetter[0].match = true;
+        clickedLetter[1].match = true;
+        setClickedLetterIndex(null);
+        setClickedLetter([]);
+      } else setClickedLetter([]);
+    }
   };
 
   useEffect(() => {
@@ -37,40 +68,38 @@ function Alphabetics() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (allLetters.length > 0) {
-      getRandomLetters();
+    if (randomLetters.length > 0) {
+      const { arabic, hebrew } = RestructuringDataFormat(randomLetters);
+      const formattedLetters = shuffleArray([...arabic, ...hebrew]);
+      setLettersFormat(formattedLetters);
+      setLetterPositions(generateRandomPositions(formattedLetters.length));
     }
-  }, [allLetters]);
+  }, [randomLetters]);
 
-  const { arabic, hebrew } = RestructuringDataFormat(randomLetters);
-  const lettersFormat = shuffleArray([...arabic, ...hebrew]);
-
-  const getRandomPosition = () => {
-    const min = 0;
-    const max = 89;
-    console.log(`${Math.floor(Math.random() * (max - min + 1)) + min}%`);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  if (allLetters.length > 0 && randomLetters.length === 0) {
+    getRandomLetters();
+  }
 
   return (
     <div className="w-full h-screen flex flex-col items-center">
-      <div className="w-container h-full flex  flex-col items-center justify-center">
+      <div className="w-container h-full flex flex-col items-center justify-center">
         <MenuBar />
-        <h1 className="text-3xl font-bold text-center my-7">Alphabetics</h1>
         <div className="flex flex-wrap justify-center relative w-full h-full">
-          {lettersFormat.map((letter, index) => (
-            <div
-              key={index}
-              className="w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold cursor-pointer border-2 shadow-md hover:shadow-lg m-2 absolute bg-white"
-              style={{
-                bottom: `${getRandomPosition()}%`,
-                right: `${getRandomPosition()}%`,
-              }}
-            >
-              <div>{letter.He}</div>
-              <div>{letter.Ar}</div>
-            </div>
-          ))}
+          {lettersFormat.map((letter, index) =>
+            !letter.match ? (
+              <div
+                key={index}
+                onClick={() => handleLetterClick(letter, index)}
+                className={`w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold cursor-pointer border-2 shadow-md hover:shadow-lg m-2 absolute bg-white ${
+                  clickedLetterIndex === index ? "letter-animation" : ""
+                }`}
+                style={letterPositions[index]}
+              >
+                <div className="text-black">{letter.He}</div>
+                <div className="text-black">{letter.Ar}</div>
+              </div>
+            ) : null
+          )}
         </div>
       </div>
     </div>

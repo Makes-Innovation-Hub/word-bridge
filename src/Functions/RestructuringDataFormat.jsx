@@ -12,6 +12,7 @@ const RestructuringDataFormat = (data) => {
       return {
         He: element.He,
         match: false,
+        id: element._id,
       };
   });
   const arabic = data.map((element) => {
@@ -26,6 +27,7 @@ const RestructuringDataFormat = (data) => {
       return {
         Ar: element.Ar,
         match: false,
+        id: element._id,
       };
   });
   // console.log(hebrew);

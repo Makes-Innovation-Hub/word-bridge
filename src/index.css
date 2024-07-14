@@ -20,3 +20,18 @@
 .w-container {
   width: 30rem;
 }
+.letter-animation {
+  animation: rotateScaleAnimation 3s infinite linear;
+}
+
+@keyframes rotateScaleAnimation {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
