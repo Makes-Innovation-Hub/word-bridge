@@ -20,7 +20,7 @@ function Alphabetics() {
   const [lettersFormat, setLettersFormat] = useState([]);
   const [letterPositions, setLetterPositions] = useState([]);
   const [clickedLetter, setClickedLetter] = useState([]);
-  const [showDialog, setShowDialog] = useState(false); // State to control showing the dialog
+  const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {
     if (timeLeft === 0) {
@@ -29,7 +29,7 @@ function Alphabetics() {
       if (score > previousMaxScore) {
         localStorage.setItem("maxScore", JSON.stringify(score));
       }
-      setShowDialog(true); // Show the dialog when time runs out
+      setShowDialog(true);
     }
   }, [timeLeft, score]);
 
@@ -126,7 +126,6 @@ function Alphabetics() {
 
   return (
     <div className="w-full h-screen flex flex-col items-center">
-      {showDialog && <Dialog score={score} game={"alphabatics"} />}
       <video autoPlay muted loop className="games-video">
         <source src={backgroundVideo} type="video/mp4" />
       </video>
@@ -139,6 +138,7 @@ function Alphabetics() {
           setTimeLeft={setTimeLeft}
           timeLeft={timeLeft}
         />
+        {showDialog && <Dialog score={score} />}
         <div className="flex flex-wrap justify-center relative w-full h-full">
           {lettersFormat.map((letter, index) =>
             !letter.match ? (
