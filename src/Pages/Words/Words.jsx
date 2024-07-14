@@ -10,6 +10,7 @@ import { gsap } from "gsap";
 import { increaseScore } from "../../redux/features/scoreSlice";
 
 import "./Words.css";
+import Dialog from "../../Components/Dialog";
 
 function Words() {
   const score = useSelector((state) => state.score.value);
@@ -22,6 +23,7 @@ function Words() {
   const [firstWord, setFirstWord] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [words, setWords] = useState([]);
+  const [showDialog, setShowDialog] = useState(false);
   const dispatch = useDispatch();
   gsap.registerPlugin(useGSAP);
 
@@ -81,6 +83,7 @@ function Words() {
       if (score > previousMaxScore) {
         localStorage.setItem("maxScore", JSON.stringify(score));
       }
+      setShowDialog(true);
     }
   }, [timeLeft, score]);
   //  Words logic
@@ -139,6 +142,7 @@ function Words() {
         setTimeLeft={setTimeLeft}
         timeLeft={timeLeft}
       />
+      {showDialog && <Dialog score={score} />}
       <div className="words-container">
         <video autoPlay muted loop className="games-video">
           <source src={backgroundVideo} type="video/mp4" />
