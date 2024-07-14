@@ -14,7 +14,7 @@
   width: 35vw;
 }
 
-.cards-grid{
+.cards-grid {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
   grid-gap: 0.5rem;
@@ -44,4 +44,3 @@
   left: 0;
   top: 0;
 }
-
