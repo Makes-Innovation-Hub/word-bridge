@@ -7,8 +7,6 @@ const Timer = ({ timeLeft, setTimeLeft, constTime }) => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
       return () => clearInterval(timer);
-    } else {
-      alert("Time's up!");
     }
   }, [timeLeft]);
 

@@ -5,6 +5,7 @@ import MenuBar from "../../Components/MenuBar";
 import { getAllLetters } from "../../redux/thunk/lettersThunk";
 import RestructuringDataFormat from "../../Functions/RestructuringDataFormat";
 import { increaseScore } from "../../redux/features/scoreSlice";
+import Dialog from "../../Components/Dialog";
 
 function Alphabetics() {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ function Alphabetics() {
   const [lettersFormat, setLettersFormat] = useState([]);
   const [letterPositions, setLetterPositions] = useState([]);
   const [clickedLetter, setClickedLetter] = useState([]);
+  const [showDialog, setShowDialog] = useState(false); // State to control showing the dialog
+
   useEffect(() => {
     if (timeLeft === 0) {
       const storedMaxScore = localStorage.getItem("maxScore");
@@ -26,8 +29,35 @@ function Alphabetics() {
       if (score > previousMaxScore) {
         localStorage.setItem("maxScore", JSON.stringify(score));
       }
+      setShowDialog(true); // Show the dialog when time runs out
     }
   }, [timeLeft, score]);
+
+  useEffect(() => {
+    dispatch(getAllLetters());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (allLetters.length > 0 && randomLetters.length === 0) {
+      getRandomLetters();
+    }
+  }, [allLetters, randomLetters]);
+
+  useEffect(() => {
+    if (randomLetters.length > 0) {
+      const { arabic, hebrew } = RestructuringDataFormat(randomLetters);
+      const formattedLetters = shuffleArray([...arabic, ...hebrew]);
+      setLettersFormat(formattedLetters);
+      setLetterPositions(generateRandomPositions(formattedLetters.length));
+    }
+  }, [randomLetters]);
+
+  useEffect(() => {
+    if (finished >= lettersFormat?.length / 2 && finished !== 0) {
+      dispatch(increaseScore(timeLeft));
+      setTimeLeft(0);
+    }
+  }, [finished, lettersFormat?.length]);
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -67,57 +97,36 @@ function Alphabetics() {
   };
 
   const handleLetterClick = (letter, index) => {
-    if (timeLeft != 0) {
+    if (timeLeft !== 0) {
       setClickedLetterIndex(index);
       const isLetterAlreadyClicked = clickedLetter.some(
         (clicked) => clicked === letter
       );
+
       if (!isLetterAlreadyClicked) {
-        clickedLetter.push(letter);
-      }
-      if (clickedLetter.length === 2) {
-        if (
-          clickedLetter[0].id === clickedLetter[1].id &&
-          clickedLetter[0] !== clickedLetter[1]
-        ) {
-          setFinished((prev) => prev + 1);
-          dispatch(increaseScore(5));
-          clickedLetter[0].match = true;
-          clickedLetter[1].match = true;
-          setClickedLetterIndex(null);
-          setClickedLetter([]);
-        } else {
-          setClickedLetter([]);
+        setClickedLetter([...clickedLetter, letter]);
+        if (clickedLetter.length === 1) {
+          if (
+            clickedLetter[0].id === letter.id &&
+            clickedLetter[0] !== letter
+          ) {
+            setFinished((prev) => prev + 1);
+            dispatch(increaseScore(5));
+            letter.match = true;
+            clickedLetter[0].match = true;
+            setClickedLetterIndex(null);
+            setClickedLetter([]);
+          } else {
+            setClickedLetter([]);
+          }
         }
       }
     }
   };
 
-  useEffect(() => {
-    if (finished >= lettersFormat?.length / 2 && finished != 0) {
-      dispatch(increaseScore(timeLeft));
-      setTimeLeft(0);
-    }
-  }, [finished, lettersFormat?.length]);
-  useEffect(() => {
-    dispatch(getAllLetters());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (randomLetters.length > 0) {
-      const { arabic, hebrew } = RestructuringDataFormat(randomLetters);
-      const formattedLetters = shuffleArray([...arabic, ...hebrew]);
-      setLettersFormat(formattedLetters);
-      setLetterPositions(generateRandomPositions(formattedLetters.length));
-    }
-  }, [randomLetters]);
-
-  if (allLetters.length > 0 && randomLetters.length === 0) {
-    getRandomLetters();
-  }
-
   return (
     <div className="w-full h-screen flex flex-col items-center">
+      {showDialog && <Dialog score={score} game={"alphabatics"} />}
       <video autoPlay muted loop className="games-video">
         <source src={backgroundVideo} type="video/mp4" />
       </video>
@@ -134,7 +143,7 @@ function Alphabetics() {
               <div
                 key={index}
                 onClick={() => handleLetterClick(letter, index)}
-                className={`w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold cursor-pointer border-2 shadow-md hover:shadow-lg m-2 absolute  ${
+                className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold cursor-pointer border-2 shadow-md hover:shadow-lg m-2 absolute bg-white ${
                   clickedLetterIndex === index
                     ? "letter-animation bg-blue-300"
                     : "bg-white"
@@ -151,4 +160,5 @@ function Alphabetics() {
     </div>
   );
 }
+
 export default Alphabetics;

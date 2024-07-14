@@ -19,8 +19,14 @@
 
 .w-container {
   width: 30rem;
-  z-index: 1;
+  z-index: 50;
 }
+.w-dialog {
+  width: 15rem;
+  height: 15rem;
+  z-index: 50;
+}
+
 .letter-animation {
   animation: rotateScaleAnimation 3s infinite linear;
 }
