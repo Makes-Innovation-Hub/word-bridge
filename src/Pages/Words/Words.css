@@ -1,13 +1,23 @@
+.words-section {
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+  width: 100vw;
+}
+
 .words-container {
-  background-color: bisque;
+  justify-content: center;
   overflow: hidden;
-  height: 70vh;
-  width: 20vw;
+  height: 50vh;
+  width: 50vw;
 }
 
 .cards-grid {
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   align-items: center;
-  grid-gap: 1rem;
+  grid-gap: 0.2rem;
   display: grid;
+  padding: 1rem;
 }

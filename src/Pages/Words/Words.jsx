@@ -2,6 +2,7 @@ import RestructuringDataFormat from "../../Functions/RestructuringDataFormat";
 import { SingleWord } from "../../Components/SingleWord/SingleWord";
 import { getAllWords } from "../../redux/thunk/wordsThunk";
 import { useDispatch, useSelector } from "react-redux";
+import MenuBar from "../../Components/MenuBar";
 import { useEffect, useState } from "react";
 
 import "./Words.css";
@@ -14,6 +15,27 @@ function Words() {
   const [words, setWords] = useState([]);
   const dispatch = useDispatch();
 
+  // Random 6 objects
+  const getRandomWords = (allData) => {
+    const randomIndexes = [];
+    while (randomIndexes.length < 6) {
+      const randomIndex = Math.floor(Math.random() * allData.length);
+      if (!randomIndexes.includes(randomIndex)) {
+        randomIndexes.push(randomIndex);
+      }
+    }
+    return randomIndexes.map((index) => allData[index]);
+  };
+
+  // Shuffle words
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+  }
+
   // Get words from Redux
   useEffect(() => {
     dispatch(getAllWords());
@@ -22,8 +44,11 @@ function Words() {
   //Restructure data
   useEffect(() => {
     if (wordsAPI.length) {
-      const restructuredWords = RestructuringDataFormat(wordsAPI);
-      setWords(restructuredWords);
+      const randomWords = getRandomWords(wordsAPI);
+      const restructuredWords = RestructuringDataFormat(randomWords);
+      setWords(
+        shuffleArray([...restructuredWords.arabic, ...restructuredWords.hebrew])
+      );
     }
   }, [wordsAPI]);
 
@@ -59,30 +84,22 @@ function Words() {
   }, [firstWord, secondWord]);
 
   return (
-    <>
+    <section className="words-section">
+      <MenuBar />
       <div className="words-container">
         <div className="cards-grid">
-          {words?.hebrew?.map((word) => (
+          {words?.map((word, index) => (
             <SingleWord
-              flip={word === firstWord || word === secondWord || word.matched}
+              flip={word === firstWord || word === secondWord || word.match}
               handleChoosingWord={handleChoosingWord}
               disabled={disabled}
-              key={word.id}
-              word={word}
-            />
-          ))}
-          {words?.arabic?.map((word) => (
-            <SingleWord
-              flip={word === firstWord || word === secondWord || word.matched}
-              handleChoosingWord={handleChoosingWord}
-              disabled={disabled}
-              key={word.id}
+              key={index}
               word={word}
             />
           ))}
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

@@ -5,7 +5,6 @@ import "./SingleWord.css";
 export const SingleWord = ({ handleChoosingWord, flip, word, disabled }) => {
   const [select, setSelect] = useState(false);
 
-
   const handleSelect = () => {
     setSelect(true);
     if (!disabled && !select) {
@@ -17,7 +16,10 @@ export const SingleWord = ({ handleChoosingWord, flip, word, disabled }) => {
   return (
     <div className="word-container">
       <div className={flip ? "flipped" : ""}>
-        <div className="word-front">{word?.He || word?.Ar}</div>
+        <div className="word-front">
+          <p className="word-text word-language">{word?.He || word?.Ar}</p>
+          <p className="word-text word-english">{word?.HeEn || word?.ArEn}</p>
+        </div>
         <div className="word-back" onClick={handleSelect}></div>
       </div>
     </div>
