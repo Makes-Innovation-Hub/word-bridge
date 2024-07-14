@@ -1,16 +1,11 @@
 import React from "react";
-// import { Box_Orange_Rounded } from "../assets/Box_Orange_Rounded.png";
+// import Box_Orange_Rounded from "../assets/Box_Orange_Rounded";
+import ButtonText_Small_Orange_Square from "../assets/ButtonText_Small_Orange_Square";
 
 function MenuBar() {
   return (
     <div>
-      {/* <Box_Orange_Rounded /> */}
-
-      <img
-        className="h-40 w-container"
-        src={`./img/Box_Orange_Rounded.png`}
-        alt=""
-      />
+      <ButtonText_Small_Orange_Square />
     </div>
   );
 }

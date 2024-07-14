@@ -1,11 +1,13 @@
 .words-container {
   background-color: bisque;
-  height: 50vh;
+  overflow: hidden;
+  height: 70vh;
   width: 20vw;
 }
 
 .cards-grid {
   grid-template-columns: 1fr 1fr 1fr;
-  display: grid;
+  align-items: center;
   grid-gap: 1rem;
+  display: grid;
 }

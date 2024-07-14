@@ -1,20 +1,26 @@
 .word-container {
   background-color: rgb(166, 211, 250);
+  justify-content: center;
+  align-items: center;
   border-radius: 5px;
   position: relative;
-  height: 10vh;
+  display: flex;
+  height: 15vh;
   width: 100%;
 }
 
 .word-back {
   position: absolute;
+  background-color: aquamarine;
   height: 100%;
   width: 100%;
+  right: 0;
+  top: 0;
 }
 
 .card .word-front {
-  transform: rotateY(90deg);
   transition: all ease-in 0.3s;
+  transform: rotateY(90deg);
   position: absolute;
 }
 
