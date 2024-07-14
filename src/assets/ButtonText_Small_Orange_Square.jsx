@@ -12,7 +12,7 @@ const ButtonText_Small_Orange_Square = ({ children }) => {
       <defs>
         <style>
           {`
-          
+      
         
       .cls-1 {
         fill: #e86e00;

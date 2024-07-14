@@ -13,10 +13,24 @@
 
 .not-found-text {
   transform: translate(-50%, -50%);
+  text-transform: uppercase;
   color: rgb(0, 0, 0);
   position: absolute;
-  font-size: 5rem;
-  z-index: 1;
+  font-weight: 700;
+  font-size: 4rem;
+  z-index: 2;
   left: 50%;
   top: 50%;
+}
+
+.not-found-overlay {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7px);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  left: 0;
+  top: 0;
 }

@@ -1,3 +1,4 @@
+import { backgroundVideo } from "../../utilities/variables";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MenuBar from "../../Components/MenuBar";
@@ -82,6 +83,12 @@ function Alphabetics() {
 
   return (
     <div className="w-full h-screen flex flex-col items-center">
+      <video autoPlay muted loop className="games-video">
+        <source src={backgroundVideo} type="video/mp4" />
+      </video>
+
+      <div className="alphabetic-overlay"></div>
+
       <div className="w-container h-full flex flex-col items-center justify-center">
         <MenuBar />
         <div className="flex flex-wrap justify-center relative w-full h-full">
