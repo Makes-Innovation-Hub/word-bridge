@@ -13,13 +13,13 @@ export default function Home() {
       <div className="App">
         <div className="home-container">
           <header className="App-header">
-            <svg className="title" viewBox="0 0 500 500">
+            <svg className="title" viewBox="0 0 600 800">
               <path
                 id="curve"
-                d="M55.2,140.6c4-6.1,40-46.8,210.6-50.6c150.3,1.2,150.8,60,350.1,100"
+                d="M30.2,140.6c4-6.1,40-46.8,270.6-50.6c150.3,1.2,150.8,60,350.1,100"
               />
               <text>
-                <textPath xlinkHref="#curve">The Alphabet Game</textPath>
+                <textPath xlinkHref="#curve">Word Bridge</textPath>
               </text>
             </svg>
             <img className="img-logo" src={orange} alt="Logo" />
