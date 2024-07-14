@@ -12,10 +12,18 @@ module.exports = {
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
-    'react/jsx-no-target-blank': 'off',
-    'react-refresh/only-export-components': [
-      'warn',
+    "react-refresh/only-export-components": [
+      "warn",
       { allowConstantExport: true },
+    ],
+    "react/prop-types": "off",
+    "no-unused-vars": "warn",
+    "react/jsx-filename-extension": [1, { extensions: [".jsx"] }],
+    "react/react-in-jsx-scope": "off",
+    semi: ["warn", "always"],
+    "no-console": [
+      "warn",
+      { allow: ["warn", "error"] }, // Allow console.warn and console.error
     ],
   },
 }
