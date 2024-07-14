@@ -21,6 +21,7 @@
   width: 30rem;
   z-index: 50;
 }
+
 .w-dialog {
   width: 15rem;
   height: 15rem;
@@ -35,9 +36,11 @@
   0% {
     transform: scale(1) rotate(0deg);
   }
+
   50% {
     transform: scale(1.1) rotate(180deg);
   }
+
   100% {
     transform: scale(1) rotate(360deg);
   }
@@ -46,20 +49,14 @@
 
 @font-face {
   font-family: 'Bubble';
-  src: url('./fonts/bubble.ttf') format('truetype');
+  src: url('./assets/bubble.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'forces';
-  src: url('./fonts/forces.ttf') format('truetype');
+  src: url('./assets/forces.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
-
-
-
-
-
-
