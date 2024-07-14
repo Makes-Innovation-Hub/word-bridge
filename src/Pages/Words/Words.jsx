@@ -13,7 +13,7 @@ import "./Words.css";
 function Words() {
   const score = useSelector((state) => state.score.value);
 
-  const constTime = 30;
+  const constTime = 80;
   const [timeLeft, setTimeLeft] = useState(constTime);
   const wordsAPI = useSelector((state) => state.words.data);
   const [secondWord, setSecondWord] = useState(null);
