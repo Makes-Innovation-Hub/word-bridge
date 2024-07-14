@@ -1,10 +1,11 @@
+import MenuBar from "../../Components/MenuBar";
 import RestructuringDataFormat from "../../Functions/RestructuringDataFormat";
 
 function Alphabatics() {
   RestructuringDataFormat();
   return (
     <div>
-      {/* <MenuBar /> */}
+      <MenuBar />
       Alphabatics
     </div>
   );
