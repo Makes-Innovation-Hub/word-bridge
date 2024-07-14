@@ -3,12 +3,9 @@ import { useNavigate } from "react-router-dom";
 const Dialog = ({ score }) => {
   const navigate = useNavigate();
 
-  const handleRestart = () => {
-    window.location.reload();
-  };
   return (
     <div
-      className="bg-cover bg-center bg-no-repeat z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-dialog flex justify-center"
+      className="z-50 bg-cover  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-dialog flex justify-center"
       style={{ backgroundImage: `url('./img/Box_Orange_Rounded.png')` }}
     >
       <div className="flex flex-col items-center justify-center">
@@ -20,7 +17,10 @@ const Dialog = ({ score }) => {
           <div onClick={() => navigate("/")} className="cursor-pointer">
             <img className="w-10" src="./img/Home.png" alt="Home" />
           </div>
-          <div onClick={handleRestart} className="cursor-pointer">
+          <div
+            onClick={() => window.location.reload()}
+            className="cursor-pointer"
+          >
             <img className="w-10" src="./img/Restart.png" alt="Restart" />
           </div>
         </div>
