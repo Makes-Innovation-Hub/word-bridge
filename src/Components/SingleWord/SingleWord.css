@@ -1,21 +1,21 @@
 .word-container {
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
-  perspective: 1000px;
   position: relative;
   color: black;
   display: flex;
-  height: 18vh;
+  height: 15vh;
   width: 100%;
 }
 
 .word-front {
+  background-image: url(../../img/card-front.png);
+  background-repeat: no-repeat;
   transform-style: preserve-3d;
-  background-color: aliceblue;
   backface-visibility: hidden;
-  flex-direction: column;
+  background-size: contain;
   justify-content: center;
+  flex-direction: column;
   display: flex;
   height: 100%;
   width: 100%;
@@ -36,10 +36,12 @@
 }
 
 .word-back {
-  position: absolute;
-  background-color: rgb(53, 139, 110);
+  background-image: url(../../img/card-back.png);
+  background-repeat: no-repeat;
   backface-visibility: hidden;
+  background-size: contain;
   border-radius: 5px;
+  position: absolute;
   cursor: pointer;
   height: 100%;
   width: 100%;

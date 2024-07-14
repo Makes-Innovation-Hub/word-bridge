@@ -4,6 +4,9 @@ import { getAllWords } from "../../redux/thunk/wordsThunk";
 import { useDispatch, useSelector } from "react-redux";
 import MenuBar from "../../Components/MenuBar";
 import { useEffect, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+gsap.registerPlugin(useGSAP);
 
 import "./Words.css";
 
@@ -13,6 +16,7 @@ function Words() {
   const [firstWord, setFirstWord] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [words, setWords] = useState([]);
+  const [animation, setAnimation] = useState(true);
   const dispatch = useDispatch();
 
   // Random 6 objects
@@ -50,6 +54,7 @@ function Words() {
         shuffleArray([...restructuredWords.arabic, ...restructuredWords.hebrew])
       );
     }
+    setAnimation((prev) => !prev);
   }, [wordsAPI]);
 
   // Choosing a word Word
@@ -82,6 +87,31 @@ function Words() {
     }
     return () => clearTimeout(timeout);
   }, [firstWord, secondWord]);
+
+
+
+// Gsap Animation
+  useEffect(() => {
+    gsap.set(".word-container ", {
+      scale: 0,
+    });
+
+    gsap.to(".word-container", {
+      duration: 0.8,
+      scale: 1,
+      ease: "bounce.out",
+      stagger: {
+        from: "random",
+        each: 0.2,
+      },
+    });
+  }, [animation]);
+
+
+
+
+
+
 
   return (
     <section className="words-section">
