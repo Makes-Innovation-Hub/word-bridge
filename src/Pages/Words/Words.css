@@ -9,7 +9,6 @@
 
 .words-container {
   justify-content: center;
-  /* overflow: hidden; */
   height: 95vh;
   width: 35vw;
 }
@@ -20,13 +19,6 @@
   grid-gap: 0.5rem;
   display: grid;
   padding: 1rem;
-}
-
-@media screen and (max-width: 1200px) {
-  .cards-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-
-  }
 }
 
 .games-video {
@@ -50,4 +42,29 @@
   z-index: 0;
   left: 0;
   top: 0;
+}
+
+/* Tablet Responsiveness*/
+@media screen and (min-width: 430px) and (max-width: 800px) {
+  .words-container {
+    justify-content: center;
+    margin-top: 5rem;
+    width: 70vw;
+  }
+}
+
+/* Phone Responsiveness*/
+@media screen and (max-width: 430px) {
+  .words-section {
+    height: 100%;
+  }
+
+  .words-container {
+    justify-content: center;
+    width: 90vw;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
