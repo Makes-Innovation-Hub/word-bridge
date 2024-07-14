@@ -2,7 +2,7 @@ import RestructuringDataFormat from "../../Functions/RestructuringDataFormat";
 import { SingleWord } from "../../Components/SingleWord/SingleWord";
 import { getAllWords } from "../../redux/thunk/wordsThunk";
 import { useDispatch, useSelector } from "react-redux";
-import { MenuBar } from "../../Components/MenuBar";
+import MenuBar from "../../Components/MenuBar";
 import { useEffect, useState } from "react";
 
 import "./Words.css";
