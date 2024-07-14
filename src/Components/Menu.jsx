@@ -21,7 +21,7 @@ const Menu = () => {
 
   return (
     <>
-      <div className="absolute text-3xl flex m-3 gap-3 text-black">
+      <div className="absolute text-3xl flex m-3 z-20 gap-3 text-black">
         <div onClick={() => navigate("/")}>
           <FaHome />
         </div>
