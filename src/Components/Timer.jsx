@@ -1,9 +1,9 @@
-import { Progress } from "@material-tailwind/react";
-
 const Timer = () => {
   return (
-    <div className="timer-container">
-      <Progress value={50} />;{/* timer */}
+    <div className="z-20 relative w-full h-full">
+      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div className="bg-blue-600 h-2.5 rounded-full w-1/2"></div>
+      </div>
     </div>
   );
 };

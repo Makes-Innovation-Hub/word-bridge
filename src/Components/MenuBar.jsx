@@ -1,7 +1,5 @@
-import React from "react";
 import ButtonText_Small_Orange_Square from "../assets/ButtonText_Small_Orange_Square";
 import Timer from "./Timer";
-// import { ThemeProvider } from "@material-tailwind/react";
 
 function MenuBar() {
   return (
@@ -10,12 +8,11 @@ function MenuBar() {
         <div className="flex flex-col w-full h-full gap-1 items-center justify-between">
           <div className="mt-6">logos</div>
           <div>score</div>
-          <div className="mb-12">
-            {/* <Timer /> */}
-            timer
+          <div className="w-full mb-12 h-full">
+            <Timer />
           </div>
         </div>
-      </ButtonText_Small_Orange_Square>{" "}
+      </ButtonText_Small_Orange_Square>
     </div>
   );
 }
