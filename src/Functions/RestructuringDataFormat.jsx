@@ -1,4 +1,5 @@
 const RestructuringDataFormat = (data) => {
+  console.log("hi");
   const hebrew = data.map((element) => {
     if (element.HeEn)
       return {
